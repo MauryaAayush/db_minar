@@ -1,4 +1,6 @@
+import 'package:db_minar/Views/HomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
@@ -13,9 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: true,
-      getPages: [],
+      getPages: [
+        GetPage(name: '/', page: () => const HomeScreen(),)
+      ],
     );
   }
 }
-
 
