@@ -17,9 +17,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Obx(() {
         if (dataController.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (dataController.quotes.isEmpty) {
-          return Center(child: Text('No data available'));
+          return const Center(child: Text('No data available'));
         } else {
           return ListView.builder(
             itemCount: dataController.quotes.length,
