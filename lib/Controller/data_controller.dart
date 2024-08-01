@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import '../Model/quotes_model.dart';
 import 'Helper/api_services.dart';
 
 
 class DataController extends GetxController {
-  var data = ''.obs;
+  var quotes = <Quote>[].obs;
   var isLoading = false.obs;
 
   @override
@@ -15,11 +16,11 @@ class DataController extends GetxController {
   void fetchData() async {
     isLoading(true);
     try {
-      String? result = await ApiServices.apiServices.fetchData();
+      List<Quote>? result = await ApiServices.apiServices.fetchData();
       if (result != null) {
-        data(result);
+        quotes(result);
       } else {
-        data('Failed to load data');
+        // Handle null result
       }
     } finally {
       isLoading(false);

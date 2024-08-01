@@ -5,10 +5,9 @@ import '../Controller/data_controller.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+   HomeScreen({super.key});
+
   final DataController dataController = Get.put(DataController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +18,18 @@ class HomeScreen extends StatelessWidget {
       body: Obx(() {
         if (dataController.isLoading.value) {
           return Center(child: CircularProgressIndicator());
+        } else if (dataController.quotes.isEmpty) {
+          return Center(child: Text('No data available'));
         } else {
-          return Center(
-            child: Text(dataController.data.value),
+          return ListView.builder(
+            itemCount: dataController.quotes.length,
+            itemBuilder: (context, index) {
+              final quote = dataController.quotes[index];
+              return ListTile(
+                title: Text(quote.quote),
+                subtitle: Text('${quote.author} - ${quote.category}'),
+              );
+            },
           );
         }
       }),
