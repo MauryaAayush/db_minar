@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: true,
       getPages: [
-        GetPage(name: '/', page: () => const HomeScreen(),)
+        GetPage(name: '/', page: () =>  HomeScreen(),)
       ],
     );
   }
