@@ -103,11 +103,8 @@ class HomeScreen extends StatelessWidget {
                             isLiked ? Icons.favorite : Icons.favorite_border,
                             color: isLiked ? Colors.red : Colors.white,
                           ),
-                          onPressed: () async {
-                            dataController.toggleLike(quote);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(isLiked ? 'Removed from bookmarks' : 'Added to bookmarks')),
-                            );
+                          onPressed: ()  {
+
                           },
                         ),
                       ),

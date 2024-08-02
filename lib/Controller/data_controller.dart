@@ -14,7 +14,7 @@ class DataController extends GetxController {
   void onInit() {
     super.onInit();
     fetchData();
-    loadLikedQuotes();
+    // loadLikedQuotes();
   }
 
   void fetchData() async {
@@ -36,21 +36,21 @@ class DataController extends GetxController {
     backgroundImage.value = imagePath;
   }
 
-  void toggleLike(Quote quote) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (likedQuotes.contains(quote)) {
-      likedQuotes.remove(quote);
-    } else {
-      likedQuotes.add(quote);
-    }
-    await prefs.setStringList('likedQuotes', likedQuotes.map((q) => json.encode(q.toJson())).toList());
-  }
-
-  void loadLikedQuotes() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? likedQuotesData = prefs.getStringList('likedQuotes');
-    if (likedQuotesData != null) {
-      likedQuotes.value = likedQuotesData.map((data) => Quote.fromJson(json.decode(data))).toList();
-    }
-  }
+  // void toggleLike(Quote quote) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   if (likedQuotes.contains(quote)) {
+  //     likedQuotes.remove(quote);
+  //   } else {
+  //     likedQuotes.add(quote);
+  //   }
+  //   await prefs.setStringList('likedQuotes', likedQuotes.map((q) => json.encode(q.toJson())).toList());
+  // }
+  //
+  // void loadLikedQuotes() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   List<String>? likedQuotesData = prefs.getStringList('likedQuotes');
+  //   if (likedQuotesData != null) {
+  //     likedQuotes.value = likedQuotesData.map((data) => Quote.fromJson(json.decode(data))).toList();
+  //   }
+  // }
 }
