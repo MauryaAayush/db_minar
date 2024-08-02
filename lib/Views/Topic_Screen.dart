@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 
 
 class TopicScreen extends StatelessWidget {
+  TopicScreen({super.key});
+
   final List<Topic> topics = [
-    Topic(category: 'Motivation', name: 'Self Discipline', image: 'assets/self_discipline.jpeg'),
-    Topic(category: 'Motivation', name: 'Happiness', image: 'assets/happiness.jpeg'),
-    Topic(category: 'Motivation', name: 'Positivity', image: 'assets/positivity.jpeg'),
-    Topic(category: 'Motivation', name: 'Success', image: 'assets/success.jpeg'),
-    Topic(category: 'Inspiration', name: 'Fitness', image: 'assets/fitness.jpeg'),
-    Topic(category: 'Inspiration', name: 'Freedom', image: 'assets/freedom.jpeg'),
-    Topic(category: 'Inspiration', name: 'Creativity', image: 'assets/creativity.jpeg'),
-    Topic(category: 'Hard Times', name: 'Sadness', image: 'assets/sadness.jpeg'),
-    Topic(category: 'Hard Times', name: 'Depression', image: 'assets/depression.jpeg'),
-    Topic(category: 'Hard Times', name: 'Broken', image: 'assets/broken.jpeg'),
+    Topic(heading: 'Motivation', category: 'Self Discipline', image: 'assets/self_discipline.jpeg'),
+    Topic(heading: 'Motivation', category: 'Happiness', image: 'assets/happiness.jpeg'),
+    Topic(heading: 'Motivation', category: 'Positivity', image: 'assets/positivity.jpeg'),
+    Topic(heading: 'Inspiration', category: 'Success', image: 'assets/success.jpeg'),
+    Topic(heading: 'Inspiration', category: 'Fitness', image: 'assets/fitness.jpeg'),
+    Topic(heading: 'Inspiration', category: 'Freedom', image: 'assets/freedom.jpeg'),
+    Topic(heading: 'Inspiration', category: 'Creativity', image: 'assets/creativity.jpeg'),
+    Topic(heading: 'Hard Times', category: 'Sadness', image: 'assets/sadness.jpeg'),
+    Topic(heading: 'Hard Times', category: 'Depression', image: 'assets/depression.jpeg'),
+    Topic(heading: 'Hard Times', category: 'Broken', image: 'assets/broken.jpeg'),
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +36,25 @@ class TopicScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (var category in topics.map((t) => t.category).toSet())
+              for (var name in topics.map((t) => t.heading).toSet())
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 10),
                     Text(
-                      category,
+                      name,
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 10),
                     GridView.count(
                       crossAxisCount: 2,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       childAspectRatio: 1.5,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                       children: topics
-                          .where((t) => t.category == category)
+                          .where((e) => e.heading == name)
                           .map((topic) => TopicCard(topic: topic))
                           .toList(),
                     ),
@@ -66,12 +69,12 @@ class TopicScreen extends StatelessWidget {
 }
 
 class Topic {
+  final String heading;
   final String category;
-  final String name;
   final String image;
 
 
-  Topic({required this.category, required this.name, required this.image});
+  Topic( {required this.heading,required this.category, required this.image});
 }
 
 class TopicCard extends StatelessWidget {
@@ -100,7 +103,7 @@ class TopicCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           padding: EdgeInsets.all(8),
           child: Text(
-            topic.name,
+            topic.category,
             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
