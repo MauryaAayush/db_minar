@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../Model/quotes_model.dart';
 import 'Helper/api_services.dart';
 
+
 class DataController extends GetxController {
   var quotes = <Quote>[].obs;
   var isLoading = false.obs;

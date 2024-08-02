@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
           Obx(() {
             if (dataController.isLoading.value) {
               return const Center(child: CircularProgressIndicator());
+
             } else if (dataController.quotes.isEmpty) {
               return const Center(child: Text('No data available'));
             } else {
@@ -37,6 +38,7 @@ class HomeScreen extends StatelessWidget {
             } else if (dataController.quotes.isEmpty) {
               return const Center(child: Text('No data available'));
             } else {
+              print('Quotes for PageView: ${dataController.quotes}'); // Debug statement
               return PageView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: dataController.quotes.length,

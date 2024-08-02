@@ -2,7 +2,7 @@ class Quote {
   final String category;
   final String quote;
   final String author;
-  final bool isLiked;
+  final String isLiked;
 
   Quote(
       {required this.category,
@@ -15,7 +15,7 @@ class Quote {
       category: json['category'],
       quote: json['quote'],
       author: json['author'],
-      isLiked: json['isLiked,'],
+      isLiked: json['isLiked'],
     );
   }
 }
