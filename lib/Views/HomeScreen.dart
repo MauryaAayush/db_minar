@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
+import 'theme_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -20,8 +21,9 @@ class HomeScreen extends StatelessWidget {
             } else if (dataController.quotes.isEmpty) {
               return const Center(child: Text('No data available'));
             } else {
-              // Assuming the first quote's category determines the background image
-              final backgroundImage = getImageForCategory(dataController.quotes[0].category);
+              final backgroundImage = dataController.backgroundImage.value.isEmpty
+                  ? getImageForCategory(dataController.quotes[0].category)
+                  : dataController.backgroundImage.value;
               return Image.asset(
                 backgroundImage,
                 fit: BoxFit.cover,
@@ -101,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                   text: 'Theme',
                   icon: Icons.palette,
                   onPressed: () {
-                    // Handle theme button press
+                    Get.to(ThemeScreen());
                   },
                 ),
                 TransparentButton(
