@@ -71,26 +71,26 @@ class HomeScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 8.0),
-                              Text(
-                                quote.category,
-                                style: const TextStyle(
-                                  color: Colors.white54,
-                                  fontSize: 16.0,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
+                              // Text(
+                              //   quote.category,
+                              //   style: const TextStyle(
+                              //     color: Colors.white54,
+                              //     fontSize: 16.0,
+                              //   ),
+                              //   textAlign: TextAlign.center,
+                              // ),
                             ],
                           ),
                         ),
                       ),
                       Positioned(
-                        top: 36.0,
+                        top: 50,
                         left: 16.0,
                         child: Text(
                           quote.category,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 20.0,
+                            fontSize: 23.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
