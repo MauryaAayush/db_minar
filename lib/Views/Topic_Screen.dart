@@ -45,7 +45,7 @@ class TopicScreen extends StatelessWidget {
                       name,
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     GridView.count(
                       crossAxisCount: 2,
                       shrinkWrap: true,
