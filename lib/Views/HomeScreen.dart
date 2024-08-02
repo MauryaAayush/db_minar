@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           return const Center(child: Text('No data available'));
         } else {
           return PageView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: dataController.quotes.length,
             itemBuilder: (context, index) {
               final quote = dataController.quotes[index];
