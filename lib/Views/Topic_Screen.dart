@@ -40,7 +40,7 @@ class TopicScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       name,
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
