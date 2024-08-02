@@ -4,6 +4,7 @@ import '../Controller/data_controller.dart';
 
 class ThemeScreen extends StatelessWidget {
   final DataController dataController = Get.put(DataController());
+  ThemeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
