@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 36.0,
+                        top: 50,
                         right: 16.0,
                         child: IconButton(
                           icon: Icon(
