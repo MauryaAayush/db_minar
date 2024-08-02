@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
-import '../Model/quotes_model.dart';
 import 'bookmark_screen.dart';
 import 'theme_screen.dart';
 
