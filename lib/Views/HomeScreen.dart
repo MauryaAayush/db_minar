@@ -10,30 +10,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('API Data Display'),
-      ),
-      body: Obx(() {
-        if (dataController.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (dataController.quotes.isEmpty) {
-          return const Center(child: Text('No data available'));
-        } else {
-          return PageView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: dataController.quotes.length,
-            itemBuilder: (context, index) {
-              final quote = dataController.quotes[index];
-              return Stack(
-                fit: StackFit.expand,
-                children: [
-                  // Background Image
-                  Image.asset(
-                    getImageForCategory(quote.category),
-                    fit: BoxFit.cover,
-                  ),
-                  // Quote Text
-                  Container(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Fixed Background Image
+          Obx(() {
+            if (dataController.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (dataController.quotes.isEmpty) {
+              return const Center(child: Text('No data available'));
+            } else {
+              // Assuming the first quote's category determines the background image
+              final backgroundImage = getImageForCategory(dataController.quotes[0].category);
+              return Image.asset(
+                backgroundImage,
+                fit: BoxFit.cover,
+              );
+            }
+          }),
+          // Quotes PageView
+          Obx(() {
+            if (dataController.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (dataController.quotes.isEmpty) {
+              return const Center(child: Text('No data available'));
+            } else {
+              return PageView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: dataController.quotes.length,
+                itemBuilder: (context, index) {
+                  final quote = dataController.quotes[index];
+                  return Container(
                     color: Colors.black54, // Add a slight background for readability
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
@@ -42,26 +49,26 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             quote.quote,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 24.0,
                               fontStyle: FontStyle.italic,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 16.0),
+                          const SizedBox(height: 16.0),
                           Text(
                             '- ${quote.author}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 18.0,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             quote.category,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white54,
                               fontSize: 16.0,
                             ),
@@ -70,13 +77,42 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  );
+                },
               );
-            },
-          );
-        }
-      }),
+            }
+          }),
+          // Transparent Buttons at the Bottom
+          Positioned(
+            bottom: 16.0,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TransparentButton(
+                  text: 'Topic',
+                  onPressed: () {
+                    // Handle topic button press
+                  },
+                ),
+                TransparentButton(
+                  text: 'Theme',
+                  onPressed: () {
+                    // Handle theme button press
+                  },
+                ),
+                TransparentButton(
+                  text: 'Setting',
+                  onPressed: () {
+                    // Handle setting button press
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -93,5 +129,23 @@ class HomeScreen extends StatelessWidget {
       default:
         return 'assets/default.jpeg';
     }
+  }
+}
+
+class TransparentButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const TransparentButton({required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: Colors.black.withOpacity(0.2), // Text color
+      ),
+      child: Text(text),
+    );
   }
 }
