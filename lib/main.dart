@@ -2,6 +2,8 @@ import 'package:db_minar/Views/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'Views/Topic_Screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: [
-        GetPage(name: '/', page: () =>  HomeScreen(),),
+        GetPage(name: '/', page: () =>  TopicScreen(),),
       ],
     );
   }
