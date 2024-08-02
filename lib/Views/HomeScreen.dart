@@ -160,7 +160,7 @@ class TransparentButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const TransparentButton({required this.text, required this.icon, required this.onPressed});
+  const TransparentButton({super.key, required this.text, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
