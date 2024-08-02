@@ -92,18 +92,21 @@ class HomeScreen extends StatelessWidget {
               children: [
                 TransparentButton(
                   text: 'Topic',
+                  icon: Icons.topic,
                   onPressed: () {
                     // Handle topic button press
                   },
                 ),
                 TransparentButton(
                   text: 'Theme',
+                  icon: Icons.palette,
                   onPressed: () {
                     // Handle theme button press
                   },
                 ),
                 TransparentButton(
                   text: 'Setting',
+                  icon: Icons.settings,
                   onPressed: () {
                     // Handle setting button press
                   },
@@ -134,18 +137,21 @@ class HomeScreen extends StatelessWidget {
 
 class TransparentButton extends StatelessWidget {
   final String text;
+  final IconData icon;
   final VoidCallback onPressed;
 
-  const TransparentButton({required this.text, required this.onPressed});
+  const TransparentButton({required this.text, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return TextButton.icon(
       onPressed: onPressed,
+      icon: Icon(icon, color: Colors.white),
+      label: Text(text),
       style: TextButton.styleFrom(
-        foregroundColor: Colors.white, backgroundColor: Colors.black.withOpacity(0.2), // Text color
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black.withOpacity(0.2), // Transparent background
       ),
-      child: Text(text),
     );
   }
 }
