@@ -1,7 +1,7 @@
-
 import 'package:get/get.dart';
 import '../Model/quotes_model.dart';
 import 'Helper/api_services.dart';
+import 'Helper/database_helper.dart';
 
 class DataController extends GetxController {
   var quotes = <Quote>[].obs;
@@ -9,11 +9,13 @@ class DataController extends GetxController {
   var backgroundImage = 'assets/default.jpeg'.obs;
   var likedQuotes = <Quote>[].obs;
 
+  final DatabaseHelper _databaseHelper = DatabaseHelper();
+
   @override
   void onInit() {
     super.onInit();
     fetchData();
-    // loadLikedQuotes();
+    loadLikedQuotes();
   }
 
   void fetchData() async {
@@ -24,7 +26,7 @@ class DataController extends GetxController {
         result.shuffle();
         quotes(result);
       } else {
-        print('here is a problem');
+        print('Here is a problem');
       }
     } finally {
       isLoading(false);
@@ -35,21 +37,27 @@ class DataController extends GetxController {
     backgroundImage.value = imagePath;
   }
 
-  // void toggleLike(Quote quote) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   if (likedQuotes.contains(quote)) {
-  //     likedQuotes.remove(quote);
-  //   } else {
-  //     likedQuotes.add(quote);
-  //   }
-  //   await prefs.setStringList('likedQuotes', likedQuotes.map((q) => json.encode(q.toJson())).toList());
-  // }
-  //
-  // void loadLikedQuotes() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   List<String>? likedQuotesData = prefs.getStringList('likedQuotes');
-  //   if (likedQuotesData != null) {
-  //     likedQuotes.value = likedQuotesData.map((data) => Quote.fromJson(json.decode(data))).toList();
-  //   }
-  // }
+
+
+  void toggleLike(Quote quote,int index) async {
+    if (likedQuotes.any((liked) => liked.quote == quote.quote)) {
+      likedQuotes.removeWhere((liked) => liked.quote == quote.quote);
+      await _databaseHelper.deleteLikedQuote(quote.quote);
+    } else {
+      likedQuotes.add(quote);
+      await _databaseHelper.insertLikedQuote(quote);
+    }
+
+    if(quotes[index].isLiked == "1"){ quotes[index].isLiked = "0";}else{
+      quotes[index].isLiked = "1";
+    }
+    update();
+    quotes.refresh();
+    print(quotes[index].isLiked);
+  }
+
+  void loadLikedQuotes() async {
+    List<Quote> likedQuotesFromDb = await _databaseHelper.getLikedQuotes();
+    likedQuotes.value = likedQuotesFromDb;
+  }
 }

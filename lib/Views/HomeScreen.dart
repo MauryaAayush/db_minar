@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                 itemCount: dataController.quotes.length,
                 itemBuilder: (context, index) {
                   final quote = dataController.quotes[index];
-                  final isLiked = dataController.likedQuotes.contains(quote);
+                  // final isLiked = dataController.likedQuotes.any((liked) => liked.quote == quote.quote);
 
                   return Stack(
                     children: [
@@ -71,14 +71,6 @@ class HomeScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 8.0),
-                              // Text(
-                              //   quote.category,
-                              //   style: const TextStyle(
-                              //     color: Colors.white54,
-                              //     fontSize: 16.0,
-                              //   ),
-                              //   textAlign: TextAlign.center,
-                              // ),
                             ],
                           ),
                         ),
@@ -100,11 +92,13 @@ class HomeScreen extends StatelessWidget {
                         right: 16.0,
                         child: IconButton(
                           icon: Icon(
-                            isLiked ? Icons.favorite : Icons.favorite_border,
-                            color: isLiked ? Colors.red : Colors.white,
+                            dataController.quotes[index].isLiked == "1" ? Icons.favorite : Icons.favorite_border,
+                            color: dataController.quotes[index].isLiked == "1" ? Colors.red : Colors.white,
                           ),
-                          onPressed: ()  {
 
+
+                          onPressed: () {
+                            dataController.toggleLike(quote,index);
                           },
                         ),
                       ),
@@ -126,14 +120,14 @@ class HomeScreen extends StatelessWidget {
                   text: 'Topic',
                   icon: Icons.topic,
                   onPressed: () {
-                    Get.to(BookmarksScreen());
+                    Get.to(() => BookmarksScreen());
                   },
                 ),
                 TransparentButton(
                   text: 'Theme',
                   icon: Icons.palette,
                   onPressed: () {
-                    Get.to(ThemeScreen());
+                    Get.to(() => ThemeScreen());
                   },
                 ),
                 TransparentButton(

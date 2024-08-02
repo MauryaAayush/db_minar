@@ -1,8 +1,10 @@
+
+
 class Quote {
   final String category;
   final String quote;
   final String author;
-  final String isLiked;
+   String isLiked;
 
   Quote({
     required this.category,

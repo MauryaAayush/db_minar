@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
 
-
 class BookmarksScreen extends StatelessWidget {
   final DataController dataController = Get.find<DataController>();
 
@@ -10,13 +9,11 @@ class BookmarksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bookmarks'),
+        title: Text('Liked Quotes'),
       ),
       body: Obx(() {
         if (dataController.likedQuotes.isEmpty) {
-          return Center(
-            child: Text('No bookmarks available'),
-          );
+          return Center(child: Text('No liked quotes'));
         } else {
           return ListView.builder(
             itemCount: dataController.likedQuotes.length,
@@ -24,8 +21,13 @@ class BookmarksScreen extends StatelessWidget {
               final quote = dataController.likedQuotes[index];
               return ListTile(
                 title: Text(quote.quote),
-                subtitle: Text('- ${quote.author}\n${quote.category}'),
-                isThreeLine: true,
+                subtitle: Text('- ${quote.author}'),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    dataController.toggleLike(quote,index);
+                  },
+                ),
               );
             },
           );
