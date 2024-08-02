@@ -22,9 +22,10 @@ class DataController extends GetxController {
     try {
       List<Quote>? result = await ApiServices.apiServices.fetchData();
       if (result != null) {
+        result.shuffle();
         quotes(result);
       } else {
-        // Handle null result
+        print('here is a problem');
       }
     } finally {
       isLoading(false);
