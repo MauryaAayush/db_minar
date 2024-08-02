@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
+import '../Model/quotes_model.dart';
+import 'bookmark_screen.dart';
 import 'theme_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,13 +20,10 @@ class HomeScreen extends StatelessWidget {
           Obx(() {
             if (dataController.isLoading.value) {
               return const Center(child: CircularProgressIndicator());
-
             } else if (dataController.quotes.isEmpty) {
               return const Center(child: Text('No data available'));
             } else {
-              final backgroundImage = dataController.backgroundImage.value.isEmpty
-                  ? getImageForCategory(dataController.quotes[0].category)
-                  : dataController.backgroundImage.value;
+              final backgroundImage = dataController.backgroundImage.value;
               return Image.asset(
                 backgroundImage,
                 fit: BoxFit.cover,
@@ -38,49 +37,82 @@ class HomeScreen extends StatelessWidget {
             } else if (dataController.quotes.isEmpty) {
               return const Center(child: Text('No data available'));
             } else {
-              print('Quotes for PageView: ${dataController.quotes}'); // Debug statement
               return PageView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: dataController.quotes.length,
                 itemBuilder: (context, index) {
                   final quote = dataController.quotes[index];
-                  return Container(
-                    color: Colors.black54, // Add a slight background for readability
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            quote.quote,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.0,
-                              fontStyle: FontStyle.italic,
-                            ),
-                            textAlign: TextAlign.center,
+                  final isLiked = dataController.likedQuotes.contains(quote);
+
+                  return Stack(
+                    children: [
+                      Container(
+                        color: Colors.black54, // Add a slight background for readability
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                quote.quote,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 16.0),
+                              Text(
+                                '- ${quote.author}',
+                                style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                quote.category,
+                                style: const TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 16.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 16.0),
-                          Text(
-                            '- ${quote.author}',
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontSize: 18.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8.0),
-                          Text(
-                            quote.category,
-                            style: const TextStyle(
-                              color: Colors.white54,
-                              fontSize: 16.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        top: 36.0,
+                        left: 16.0,
+                        child: Text(
+                          quote.category,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 36.0,
+                        right: 16.0,
+                        child: IconButton(
+                          icon: Icon(
+                            isLiked ? Icons.favorite : Icons.favorite_border,
+                            color: isLiked ? Colors.red : Colors.white,
+                          ),
+                          onPressed: () async {
+                            dataController.toggleLike(quote);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(isLiked ? 'Removed from bookmarks' : 'Added to bookmarks')),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   );
                 },
               );
@@ -98,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                   text: 'Topic',
                   icon: Icons.topic,
                   onPressed: () {
-                    // Handle topic button press
+                    Get.to(BookmarksScreen());
                   },
                 ),
                 TransparentButton(
@@ -121,21 +153,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  // Function to get the image based on the category
-  String getImageForCategory(String category) {
-    switch (category.toLowerCase()) {
-      case 'inspiration':
-        return 'assets/image2.jpeg';
-      case 'love':
-        return 'assets/image9.jpeg';
-      case 'life':
-        return 'assets/life.jpeg';
-    // Add more categories and images as needed
-      default:
-        return 'assets/default.jpeg';
-    }
   }
 }
 

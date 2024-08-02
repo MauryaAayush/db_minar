@@ -4,11 +4,12 @@ class Quote {
   final String author;
   final String isLiked;
 
-  Quote(
-      {required this.category,
-      required this.quote,
-      required this.author,
-      required this.isLiked});
+  Quote({
+    required this.category,
+    required this.quote,
+    required this.author,
+    required this.isLiked,
+  });
 
   factory Quote.fromJson(Map<String, dynamic> json) {
     return Quote(
@@ -17,5 +18,14 @@ class Quote {
       author: json['author'],
       isLiked: json['isLiked'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'category': category,
+      'quote': quote,
+      'author': author,
+      'isLiked': isLiked,
+    };
   }
 }
