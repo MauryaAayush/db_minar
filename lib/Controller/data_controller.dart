@@ -1,6 +1,5 @@
-import 'dart:convert';
+
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../Model/quotes_model.dart';
 import 'Helper/api_services.dart';
 
