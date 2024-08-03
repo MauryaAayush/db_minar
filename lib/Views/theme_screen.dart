@@ -37,7 +37,115 @@ class ThemeScreen extends StatelessWidget {
               Get.back();
             },
           ),
-          // Add more ThemeTiles as needed
+          ThemeTile(
+            imagePath: 'assets/theme/1.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/1.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/2.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/2.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/3.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/3.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/4.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/4.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/5.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/5.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/6.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/6.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/7.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/7.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/8.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/8.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/9.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/9.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/10.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/10.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/11.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/11.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/12.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/12.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/13.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/13.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/14.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/14.jpeg');
+              Get.back();
+            },
+          ),
+          ThemeTile(
+            imagePath: 'assets/theme/15.jpeg',
+            onTap: () {
+              dataController.setBackgroundImage('assets/theme/15.jpeg');
+              Get.back();
+            },
+          ),
+
+
+
+
         ],
       ),
     );
