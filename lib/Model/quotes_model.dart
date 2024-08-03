@@ -31,3 +31,14 @@ class Quote {
     };
   }
 }
+
+
+
+class Topic {
+  final String heading;
+  final String category;
+  final String image;
+
+
+  Topic( {required this.heading,required this.category, required this.image});
+}

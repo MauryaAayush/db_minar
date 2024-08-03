@@ -1,10 +1,20 @@
 
+
+
+import 'package:db_minar/Views/quotes_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
-class TopicScreen extends StatelessWidget {
-  TopicScreen({super.key});
+import '../Model/quotes_model.dart';
 
+class TopicScreen extends StatefulWidget {
+  @override
+  State<TopicScreen> createState() => _TopicScreenState();
+}
+
+class _TopicScreenState extends State<TopicScreen> {
   final List<Topic> topics = [
     Topic(heading: 'Motivation', category: 'Self Discipline', image: 'assets/self_discipline.jpeg'),
     Topic(heading: 'Motivation', category: 'Happiness', image: 'assets/happiness.jpeg'),
@@ -17,7 +27,6 @@ class TopicScreen extends StatelessWidget {
     Topic(heading: 'Hard Times', category: 'Depression', image: 'assets/depression.jpeg'),
     Topic(heading: 'Hard Times', category: 'Broken', image: 'assets/broken.jpeg'),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +65,12 @@ class TopicScreen extends StatelessWidget {
                       crossAxisSpacing: 10,
                       children: topics
                           .where((e) => e.heading == name)
-                          .map((topic) => TopicCard(topic: topic))
+                          .map((topic) => GestureDetector(
+                        onTap: () {
+                          Get.to(() => QuotesScreen(category: topic.category));
+                        },
+                        child: TopicCard(topic: topic),
+                      ))
                           .toList(),
                     ),
                   ],
@@ -67,15 +81,6 @@ class TopicScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class Topic {
-  final String heading;
-  final String category;
-  final String image;
-
-
-  Topic( {required this.heading,required this.category, required this.image});
 }
 
 class TopicCard extends StatelessWidget {
@@ -108,7 +113,6 @@ class TopicCard extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
-
       ],
     );
   }
