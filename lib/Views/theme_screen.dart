@@ -4,6 +4,7 @@ import '../Controller/data_controller.dart';
 
 class ThemeScreen extends StatelessWidget {
   final DataController dataController = Get.put(DataController());
+
   ThemeScreen({super.key});
 
   @override
@@ -142,10 +143,6 @@ class ThemeScreen extends StatelessWidget {
               Get.back();
             },
           ),
-
-
-
-
         ],
       ),
     );
@@ -165,7 +162,8 @@ class ThemeTile extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(3.5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+          borderRadius: BorderRadius.circular(12.0),
+          // Adjust the radius as needed
           image: DecorationImage(
             image: AssetImage(imagePath),
             fit: BoxFit.cover,
