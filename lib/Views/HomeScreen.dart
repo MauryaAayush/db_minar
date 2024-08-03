@@ -1,3 +1,4 @@
+import 'package:db_minar/Views/Topic_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
@@ -120,7 +121,8 @@ class HomeScreen extends StatelessWidget {
                   text: 'Topic',
                   icon: Icons.topic,
                   onPressed: () {
-                    Get.to(() => BookmarksScreen());
+                    Get.to(()=>TopicScreen());
+                    // Get.to(() => BookmarksScreen());
                   },
                 ),
                 TransparentButton(

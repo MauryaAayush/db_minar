@@ -82,8 +82,15 @@ class QuotesScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
+                            top: 42,
+                            left: 1.0,
+                            child: IconButton(onPressed: () {
+                              Get.back();
+                            }, icon: Icon(Icons.arrow_back_rounded,color: Colors.white,))
+                        ),
+                        Positioned(
                           top: 50,
-                          left: 16.0,
+                          left: 56.0,
                           child: Text(
                             quote.category,
                             style: const TextStyle(
@@ -124,13 +131,7 @@ class QuotesScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TransparentButton(
-                  text: 'Topic',
-                  icon: Icons.topic,
-                  onPressed: () {
-                    Get.to(() => BookmarksScreen());
-                  },
-                ),
+
                 TransparentButton(
                   text: 'Theme',
                   icon: Icons.palette,
@@ -138,13 +139,8 @@ class QuotesScreen extends StatelessWidget {
                     Get.to(() => ThemeScreen());
                   },
                 ),
-                TransparentButton(
-                  text: 'Setting',
-                  icon: Icons.settings,
-                  onPressed: () {
-                    // Handle setting button press
-                  },
-                ),
+
+
               ],
             ),
           ),

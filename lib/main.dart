@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: [
-        GetPage(name: '/', page: () =>  TopicScreen(),),
+        GetPage(name: '/', page: () =>  HomeScreen(),),
       ],
     );
   }
