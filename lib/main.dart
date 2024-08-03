@@ -2,7 +2,6 @@ import 'package:db_minar/Views/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'Views/Topic_Screen.dart';
 
 void main() {
   runApp(const MyApp());
