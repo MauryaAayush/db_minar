@@ -44,8 +44,6 @@ class QuotesScreen extends StatelessWidget {
 
             return Stack(
               children: [
-
-
                 // PageView for quotes
                 PageView.builder(
                   scrollDirection: Axis.vertical,
@@ -153,10 +151,6 @@ class QuotesScreen extends StatelessWidget {
 
         ],
       ),
-
-
-
-
 
 
     );
