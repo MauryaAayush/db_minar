@@ -1,4 +1,3 @@
-
 import 'package:db_minar/Views/quotes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,16 +10,44 @@ class TopicScreen extends StatefulWidget {
 
 class _TopicScreenState extends State<TopicScreen> {
   final List<Topic> topics = [
-    Topic(heading: 'Motivation', category: 'Motivation', image: 'assets/self_discipline.jpeg'),
-    Topic(heading: 'Motivation', category: 'Love', image: 'assets/happiness.jpeg'),
-    Topic(heading: 'Motivation', category: 'Positive', image: 'assets/positivity.jpeg'),
-    Topic(heading: 'Inspiration', category: 'Success', image: 'assets/success.jpeg'),
-    Topic(heading: 'Inspiration', category: 'Fitness', image: 'assets/fitness.jpeg'),
-    Topic(heading: 'Inspiration', category: 'Freedom', image: 'assets/freedom.jpeg'),
-    Topic(heading: 'Inspiration', category: 'Creativity', image: 'assets/creativity.jpeg'),
-    Topic(heading: 'Hard Times', category: 'Sadness', image: 'assets/sadness.jpeg'),
-    Topic(heading: 'Hard Times', category: 'Depression', image: 'assets/depression.jpeg'),
-    Topic(heading: 'Hard Times', category: 'Broken', image: 'assets/broken.jpeg'),
+    Topic(
+        heading: 'Motivation',
+        category: 'Motivation',
+        image: 'assets/self_discipline.jpeg'),
+    Topic(
+        heading: 'Motivation',
+        category: 'Love',
+        image: 'assets/happiness.jpeg'),
+    Topic(
+        heading: 'Motivation',
+        category: 'Positive',
+        image: 'assets/positivity.jpeg'),
+    Topic(
+        heading: 'Inspiration',
+        category: 'Success',
+        image: 'assets/success.jpeg'),
+    Topic(
+        heading: 'Inspiration',
+        category: 'Fitness',
+        image: 'assets/fitness.jpeg'),
+    Topic(
+        heading: 'Inspiration',
+        category: 'Freedom',
+        image: 'assets/freedom.jpeg'),
+    Topic(
+        heading: 'Inspiration',
+        category: 'Creativity',
+        image: 'assets/creativity.jpeg'),
+    Topic(
+        heading: 'Hard Times',
+        category: 'Sadness',
+        image: 'assets/sadness.jpeg'),
+    Topic(
+        heading: 'Hard Times',
+        category: 'Depression',
+        image: 'assets/depression.jpeg'),
+    Topic(
+        heading: 'Hard Times', category: 'Broken', image: 'assets/broken.jpeg'),
   ];
 
   @override
@@ -41,6 +68,44 @@ class _TopicScreenState extends State<TopicScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              Text(
+                'Liked Quotes',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+
+              Stack(
+
+               children: [
+                 Container(
+                   height: 130,
+                   width: 250,
+                   decoration: BoxDecoration(
+                       borderRadius: BorderRadius.all(Radius.circular(10)),
+                       color: Colors.red,
+                       image: DecorationImage(
+                           image: AssetImage('assets/liked.jpeg'),
+                           fit: BoxFit.cover)),
+                 ),
+                 Container(
+                   decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(10),
+                     color: Colors.black.withOpacity(0.3),
+                   ),
+                   alignment: Alignment.bottomLeft,
+                   padding: EdgeInsets.all(8),
+                   child: Text(
+                     'Liked Quotes',
+                     style: TextStyle(
+                         color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                   ),
+                 ),
+
+               ],
+              ),
+
+
+
               for (var name in topics.map((t) => t.heading).toSet())
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +113,8 @@ class _TopicScreenState extends State<TopicScreen> {
                     const SizedBox(height: 10),
                     Text(
                       name,
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 10),
                     GridView.count(
@@ -61,11 +127,12 @@ class _TopicScreenState extends State<TopicScreen> {
                       children: topics
                           .where((e) => e.heading == name)
                           .map((topic) => GestureDetector(
-                        onTap: () {
-                          Get.to(() => QuotesScreen(category: topic.category));
-                        },
-                        child: TopicCard(topic: topic),
-                      ))
+                                onTap: () {
+                                  Get.to(() =>
+                                      QuotesScreen(category: topic.category));
+                                },
+                                child: TopicCard(topic: topic),
+                              ))
                           .toList(),
                     ),
                   ],
@@ -105,7 +172,8 @@ class TopicCard extends StatelessWidget {
           padding: EdgeInsets.all(8),
           child: Text(
             topic.category,
-            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
       ],
