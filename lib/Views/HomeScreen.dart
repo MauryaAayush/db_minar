@@ -2,7 +2,7 @@ import 'package:db_minar/Views/Topic_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
-import 'bookmark_screen.dart';
+
 import 'theme_screen.dart';
 
 class HomeScreen extends StatelessWidget {
