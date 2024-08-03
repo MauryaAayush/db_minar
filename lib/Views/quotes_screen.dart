@@ -2,7 +2,7 @@ import 'package:db_minar/Views/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
-import 'bookmark_screen.dart';
+
 
 class QuotesScreen extends StatelessWidget {
   final String category;
