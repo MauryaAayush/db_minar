@@ -11,9 +11,9 @@ class TopicScreen extends StatefulWidget {
 
 class _TopicScreenState extends State<TopicScreen> {
   final List<Topic> topics = [
-    Topic(heading: 'Motivation', category: 'Self Discipline', image: 'assets/self_discipline.jpeg'),
-    Topic(heading: 'Motivation', category: 'Happiness', image: 'assets/happiness.jpeg'),
-    Topic(heading: 'Motivation', category: 'Positivity', image: 'assets/positivity.jpeg'),
+    Topic(heading: 'Motivation', category: 'Motivation', image: 'assets/self_discipline.jpeg'),
+    Topic(heading: 'Motivation', category: 'Love', image: 'assets/happiness.jpeg'),
+    Topic(heading: 'Motivation', category: 'Affirmation', image: 'assets/positivity.jpeg'),
     Topic(heading: 'Inspiration', category: 'Success', image: 'assets/success.jpeg'),
     Topic(heading: 'Inspiration', category: 'Fitness', image: 'assets/fitness.jpeg'),
     Topic(heading: 'Inspiration', category: 'Freedom', image: 'assets/freedom.jpeg'),
