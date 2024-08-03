@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
 import '../Model/quotes_model.dart';
 import 'Helper/api_services.dart';
 import 'Helper/database_helper.dart';
@@ -76,5 +74,18 @@ class DataController extends GetxController {
   void loadLikedQuotes() async {
     List<Quote> likedQuotesFromDb = await _databaseHelper.getLikedQuotes();
     likedQuotes.value = likedQuotesFromDb;
+  }
+
+  // Group liked quotes by category
+  Map<String, List<Quote>> get likedQuotesByCategory {
+    var groupedQuotes = <String, List<Quote>>{};
+    for (var quote in likedQuotes) {
+      if (groupedQuotes.containsKey(quote.category)) {
+        groupedQuotes[quote.category]!.add(quote);
+      } else {
+        groupedQuotes[quote.category] = [quote];
+      }
+    }
+    return groupedQuotes;
   }
 }
