@@ -1,12 +1,7 @@
 
-
-
 import 'package:db_minar/Views/quotes_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 import '../Model/quotes_model.dart';
 
 class TopicScreen extends StatefulWidget {
