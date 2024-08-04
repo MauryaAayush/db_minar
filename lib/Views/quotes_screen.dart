@@ -88,17 +88,18 @@ class _QuotesScreenState extends State<QuotesScreen> {
                       ),
                       Positioned(
                           top: 40,
+                          left : 10,
                           child: IconButton(onPressed: () {
                         Get.back();
                       }, icon: Icon(Icons.arrow_back,color: Colors.white,))),
                       Positioned(
                         top: 50,
-                        left: 145,
+                        left: 60,
                         child: Text(
                           quote.category,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 23.0,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
