@@ -8,6 +8,7 @@ class DataController extends GetxController {
   var isLoading = false.obs;
   var backgroundImage = 'assets/default.jpeg'.obs;
   var likedQuotes = <Quote>[].obs;
+  var allQuotes = <Quote>[].obs; // To store all fetched quotes
 
   final DatabaseHelper _databaseHelper = DatabaseHelper();
 
@@ -24,7 +25,8 @@ class DataController extends GetxController {
       List<Quote>? result = await ApiServices.apiServices.fetchData();
       if (result != null) {
         result.shuffle();
-        quotes(result);
+        allQuotes(result); // Store all fetched quotes
+        quotes(result); // Initially display all quotes
       } else {
         print('Here is a problem');
       }
@@ -33,16 +35,13 @@ class DataController extends GetxController {
     }
   }
 
-  void fetchDataByCategory(String category) async {
+  void fetchDataByCategory(String category) {
     isLoading(true);
     try {
-      List<Quote>? result = await ApiServices.apiServices.fetchData(category: category);
-      if (result != null) {
-        result.shuffle();
-        quotes(result);
-      } else {
-        print('Here is a problem');
-      }
+      List<Quote> filteredQuotes = allQuotes.where((quote) => quote.category == category).toList();
+      quotes(filteredQuotes);
+    } catch (e) {
+      print('Error filtering data by category: $e');
     } finally {
       isLoading(false);
     }

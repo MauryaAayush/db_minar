@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../Model/quotes_model.dart';
 
 class TopicScreen extends StatelessWidget {
-   TopicScreen({super.key});
+  TopicScreen({super.key});
 
   final List<Topic> topics = [
     Topic(
@@ -26,27 +26,27 @@ class TopicScreen extends StatelessWidget {
         image: 'assets/success.jpeg'),
     Topic(
         heading: 'Inspiration',
-        category: 'Fitness',
+        category: 'Happy',
         image: 'assets/fitness.jpeg'),
     Topic(
         heading: 'Inspiration',
-        category: 'Freedom',
+        category: 'Kindness',
         image: 'assets/freedom.jpeg'),
     Topic(
         heading: 'Inspiration',
-        category: 'Creativity',
+        category: 'Loyalty',
         image: 'assets/creativity.jpeg'),
     Topic(
         heading: 'Hard Times',
-        category: 'Sadness',
+        category: 'Sad',
         image: 'assets/sadness.jpeg'),
     Topic(
         heading: 'Hard Times',
-        category: 'Depression',
+        category: 'Ego',
         image: 'assets/depression.jpeg'),
     Topic(
         heading: 'Hard Times',
-        category: 'Broken',
+        category: 'Gratitude',
         image: 'assets/broken.jpeg'),
   ];
 
