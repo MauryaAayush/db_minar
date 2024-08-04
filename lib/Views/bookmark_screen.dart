@@ -7,61 +7,98 @@ import '../Model/quotes_model.dart';
 class BookmarksScreen extends StatelessWidget {
   final DataController dataController = Get.find<DataController>();
 
-   BookmarksScreen({super.key});
+  BookmarksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text('Liked Quotes'),
-      ),
-      body: Obx(() {
-        if (dataController.likedQuotes.isEmpty) {
-          return Center(
-            child: Text(
-              'No liked quotes',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/image9.jpeg', // Replace with your background image asset
+              fit: BoxFit.cover,
             ),
-          );
-        } else {
-          var quotesByCategory = dataController.likedQuotesByCategory;
-          return ListView.builder(
-            itemCount: quotesByCategory.keys.length,
-            itemBuilder: (context, index) {
-              var category = quotesByCategory.keys.elementAt(index);
-              var quotes = quotesByCategory[category]!;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Card(
-                  elevation: 4, // Add shadow here
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: OpenContainer(
-                    transitionDuration: Duration(milliseconds: 500),
-                    openBuilder: (context, _) => QuotesDetailScreen(category: category, quotes: quotes),
-                    closedElevation: 0,
-                    closedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    closedColor: Theme.of(context).cardColor,
-                    closedBuilder: (context, openContainer) => ListTile(
-                      title: Text(
-                        category,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          // Content
+          Positioned.fill(
+            child: Column(
+              children: [
+                // Top section with title and back icon
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 40.0),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () => Navigator.pop(context),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                      onTap: openContainer,
-                    ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Liked Quotes',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          );
-        }
-      }),
+                Expanded(
+                  child: Obx(() {
+                    if (dataController.likedQuotes.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'No liked quotes',
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                      );
+                    } else {
+                      var quotesByCategory = dataController.likedQuotesByCategory;
+                      return ListView.builder(
+                        itemCount: quotesByCategory.keys.length,
+                        itemBuilder: (context, index) {
+                          var category = quotesByCategory.keys.elementAt(index);
+                          var quotes = quotesByCategory[category]!;
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                            child: Card(
+                              elevation: 4, // Add shadow here
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: OpenContainer(
+                                transitionDuration: Duration(milliseconds: 500),
+                                openBuilder: (context, _) => QuotesDetailScreen(category: category, quotes: quotes),
+                                closedElevation: 0,
+                                closedShape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                closedColor: Theme.of(context).cardColor,
+                                closedBuilder: (context, openContainer) => ListTile(
+                                  title: Text(
+                                    category,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                  ),
+                                  trailing: Icon(Icons.arrow_forward_ios),
+                                  onTap: openContainer,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  }),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -76,35 +113,73 @@ class QuotesDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final DataController dataController = Get.find<DataController>();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(category),
-      ),
-      body: ListView.builder(
-        itemCount: quotes.length,
-        itemBuilder: (context, index) {
-          var quote = quotes[index];
-          var quoteIndex = dataController.likedQuotes.indexOf(quote);
-          return Card(
-            elevation: 2, // Add shadow here
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+      body: Stack(
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/life.jpeg', // Replace with your background image asset
+              fit: BoxFit.cover,
             ),
-            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: ListTile(
-              title: Text(
-                quote.quote,
-                style: TextStyle(fontSize: 16),
-              ),
-              subtitle: Text('- ${quote.author}'),
-              trailing: IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
-                onPressed: () {
-                  dataController.toggleLike(quote, quoteIndex);
-                },
-              ),
+          ),
+          // Content
+          Positioned.fill(
+            child: Column(
+              children: [
+                // Top section with title and back icon
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 40.0),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        category,
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: quotes.length,
+                    itemBuilder: (context, index) {
+                      var quote = quotes[index];
+                      var quoteIndex = dataController.likedQuotes.indexOf(quote);
+                      return Card(
+                        elevation: 2, // Add shadow here
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        child: ListTile(
+                          title: Text(
+                            quote.quote,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          subtitle: Text('- ${quote.author}'),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              dataController.toggleLike(quote, quoteIndex);
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
