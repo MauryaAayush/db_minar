@@ -28,15 +28,21 @@ class _QuotesScreenState extends State<QuotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        fit: StackFit.expand,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(dataController.backgroundImage.value),
+          Obx(() {
+            if (dataController.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (dataController.quotes.isEmpty) {
+              return const Center(child: Text('No data available'));
+            } else {
+              final backgroundImage = dataController.backgroundImage.value;
+              return Image.asset(
+                backgroundImage,
                 fit: BoxFit.cover,
-              ),
-            ),
-          ),
+              );
+            }
+          }),
           Obx(() {
             if (dataController.isLoading.value) {
               return Center(child: CircularProgressIndicator());
