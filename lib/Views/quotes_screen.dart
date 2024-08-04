@@ -2,8 +2,7 @@ import 'package:db_minar/Views/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/data_controller.dart';
-import '../Model/quotes_model.dart';
-import 'Topic_Screen.dart';
+
 
 class QuotesScreen extends StatefulWidget {
   final String category;
