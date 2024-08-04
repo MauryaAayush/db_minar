@@ -7,10 +7,14 @@ import '../Model/quotes_model.dart';
 class BookmarksScreen extends StatelessWidget {
   final DataController dataController = Get.find<DataController>();
 
+   BookmarksScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('Liked Quotes'),
       ),
       body: Obx(() {
