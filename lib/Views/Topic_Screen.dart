@@ -12,8 +12,9 @@ class TopicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        fit: StackFit.expand,
         children: [
-          // Background image
+
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -37,7 +38,6 @@ class TopicScreen extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.arrow_back, color: Colors.white),
                           onPressed: () {
-                            // Handle back button press
                             Navigator.of(context).pop();
                           },
                         ),
@@ -70,7 +70,6 @@ class TopicScreen extends StatelessWidget {
                         width: 250,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.red,
                           image: DecorationImage(
                             image: AssetImage('assets/liked.jpeg'),
                             fit: BoxFit.cover,
