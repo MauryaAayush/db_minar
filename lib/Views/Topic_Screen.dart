@@ -6,9 +6,7 @@ import '../Model/quotes_model.dart';
 import '../utils/lists.dart';
 
 class TopicScreen extends StatelessWidget {
-  TopicScreen({super.key});
-
-
+  const TopicScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
