@@ -47,7 +47,8 @@ class HomeScreen extends StatelessWidget {
                   return Stack(
                     children: [
                       Container(
-                        color: Colors.black54, // Add a slight background for readability
+                        color: Colors.black54,
+                        // Add a slight background for readability
                         padding: const EdgeInsets.all(16.0),
                         child: Center(
                           child: Column(
@@ -93,13 +94,15 @@ class HomeScreen extends StatelessWidget {
                         right: 16.0,
                         child: IconButton(
                           icon: Icon(
-                            dataController.quotes[index].isLiked == "1" ? Icons.favorite : Icons.favorite_border,
-                            color: dataController.quotes[index].isLiked == "1" ? Colors.red : Colors.white,
+                            dataController.quotes[index].isLiked == "1"
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: dataController.quotes[index].isLiked == "1"
+                                ? Colors.red
+                                : Colors.white,
                           ),
-
-
                           onPressed: () {
-                            dataController.toggleLike(quote,index);
+                            dataController.toggleLike(quote, index);
                           },
                         ),
                       ),
@@ -121,8 +124,7 @@ class HomeScreen extends StatelessWidget {
                   text: 'Topic',
                   icon: Icons.topic,
                   onPressed: () {
-                    Get.to(()=>TopicScreen());
-                    // Get.to(() => BookmarksScreen());
+                    Get.to(() => TopicScreen());
                   },
                 ),
                 TransparentButton(
@@ -153,7 +155,11 @@ class TransparentButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const TransparentButton({super.key, required this.text, required this.icon, required this.onPressed});
+  const TransparentButton(
+      {super.key,
+      required this.text,
+      required this.icon,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +169,8 @@ class TransparentButton extends StatelessWidget {
       label: Text(text),
       style: TextButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.black.withOpacity(0.2), // Transparent background
+        backgroundColor:
+            Colors.black.withOpacity(0.2), // Transparent background
       ),
     );
   }
