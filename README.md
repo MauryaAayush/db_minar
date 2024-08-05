@@ -31,13 +31,6 @@ Welcome to the Quotes App! This app is designed to inspire and motivate you with
 <img src="https://github.com/user-attachments/assets/2f0cb1b4-5bfb-4593-9d78-7fd81497f7bf" height=500px hspace=20>
 <img src="https://github.com/user-attachments/assets/28583837-4475-4a94-9850-cb7b2cdf3a78" height=500px hspace=20>
 
-
-
-
-
-
-
-
 </div>
 
 
