@@ -14,7 +14,6 @@ class TopicScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -36,7 +35,8 @@ class TopicScreen extends StatelessWidget {
                       Positioned(
                         top: 35,
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back, color: Colors.white),
+                          icon:
+                              const Icon(Icons.arrow_back, color: Colors.white),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
@@ -60,7 +60,10 @@ class TopicScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   Text(
                     'Liked Quotes',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   const SizedBox(height: 10),
                   Stack(
@@ -92,7 +95,9 @@ class TopicScreen extends StatelessWidget {
                           child: Text(
                             'Liked',
                             style: TextStyle(
-                                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -106,7 +111,9 @@ class TopicScreen extends StatelessWidget {
                         Text(
                           name,
                           style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                         GridView.count(
                           crossAxisCount: 2,
@@ -118,12 +125,12 @@ class TopicScreen extends StatelessWidget {
                           children: topics
                               .where((e) => e.heading == name)
                               .map((topic) => GestureDetector(
-                            onTap: () {
-                              Get.to(() =>
-                                  QuotesScreen(category: topic.category));
-                            },
-                            child: TopicCard(topic: topic),
-                          ))
+                                    onTap: () {
+                                      Get.to(() => QuotesScreen(
+                                          category: topic.category));
+                                    },
+                                    child: TopicCard(topic: topic),
+                                  ))
                               .toList(),
                         ),
                       ],
