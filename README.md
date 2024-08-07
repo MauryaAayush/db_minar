@@ -3,7 +3,6 @@
 ## Introduction
 Welcome to the Quotes App! This app is designed to inspire and motivate you with a collection of the best quotes from famous authors, philosophers, and leaders. Whether you're looking for a daily dose of motivation or a source of inspiration, the Quotes App has got you covered.
 
-
 ## key Features :
 * Extensive Collection of Quotes: Browse through a vast library of quotes from various categories such as life, love, success, and more.
 * Daily Quote: Receive a new motivational quote every day to start your day on a positive note.
